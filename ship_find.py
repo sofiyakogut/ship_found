@@ -31,7 +31,7 @@ def encode(sf):
             """ YOUR CODE HERE """  #done
             cnf.add_clause([~cell(i,j)])
 
-    # Ships must be placed somewhere
+    # Ships must be placed somewhere !!!!!
     for ship_index, ship_size in enumerate(sf.ships):
         lits = []
         for init_row in range(nrows):
