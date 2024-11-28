@@ -45,6 +45,23 @@ def encode(sf):
 
     # Ships can not have same starting position
     """ YOUR CODE HERE """
+    for ship_index_1, ship_size_1 in enumerate(sf.ships):
+        for init_row_1 in range(nrows):
+            for init_column_1 in range(ncolumns):
+                for ship_dir_1 in ["E", "S"]:
+                    # Variable representing the starting position of ship_index_1
+                    start_pos_1 = ship(init_row_1, init_column_1, ship_index_1, ship_dir_1)
+
+                    for ship_index_2 in range(ship_index_1 + 1, len(sf.ships)):
+                        for init_row_2 in range(nrows):
+                            for init_column_2 in range(ncolumns):
+                                for ship_dir_2 in ["E", "S"]:
+                                    # Variable representing the starting position of ship_index_2
+                                    start_pos_2 = ship(init_row_2, init_column_2, ship_index_2, ship_dir_2)
+
+                                    # Add a clause to prevent both ships from starting at the same position
+                                    cnf.add_clause([start_pos_1, ~start_pos_2])
+                                    cnf.add_clause([~start_pos_1, start_pos_2])
 
 
     # Ship constraints
